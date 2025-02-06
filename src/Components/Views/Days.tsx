@@ -33,6 +33,8 @@ const Days = ({ start }: IDaysProps) => {
 						<span
 							key={index}
 							className={`hover:bg-gray-100 dark:hover:bg-gray-600 block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center  dark:text-white font-semibold text-sm ${
+								options?.theme?.disabled
+							} ${
 								showSelectedDate && selectedDate.getTime() > 0 && getFormattedDate(selectedDate) === getFormattedDate(current)
 									? twMerge("bg-blue-700 text-white hover:bg-blue-600", options?.theme?.selected)
 									: ""
@@ -40,9 +42,17 @@ const Days = ({ start }: IDaysProps) => {
 								month == getFormattedDate(selectedDate, { month: "long" }) && year == getFormattedDate(selectedDate, { year: "numeric" })
 									? twMerge("text-gray-900", options?.theme?.text)
 									: twMerge("text-gray-500", options?.theme?.disabledText)
-							} ${(options?.minDate && new Date(current) < options?.minDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0) ? twMerge("text-gray-500", options?.theme?.disabledText) : ""} ${
-								(options?.maxDate && new Date(current) > options?.maxDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0) ? twMerge("text-gray-500", options?.theme?.disabledText) : ""
-							}
+							} ${
+								(options?.minDate && new Date(current) < options?.minDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0)
+									? twMerge("text-gray-500", options?.theme?.disabledText)
+									: ""
+							} ${
+								(options?.maxDate && new Date(current) > options?.maxDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0)
+									? twMerge("text-gray-500", options?.theme?.disabledText)
+									: ""
+							} ${
+								(options?.minDate && new Date(current) < options?.minDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0) ? options?.theme?.disabled || "" : ""
+							} ${(options?.maxDate && new Date(current) > options?.maxDate) || (options?.disabledDates && options.disabledDates.indexOf(new Date(current)) >= 0) ? options?.theme?.disabled || "" : ""}
                             `}
 							onClick={() => {
 								changeSelectedDate("date", new Date(current))

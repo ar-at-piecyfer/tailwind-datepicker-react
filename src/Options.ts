@@ -10,6 +10,8 @@ interface ITheme {
 	input: string
 	inputIcon: string
 	selected: string
+	disabled: string
+	enabled: string
 }
 
 interface IIcons {
@@ -55,6 +57,8 @@ const options: IOptions = {
 		input: "",
 		inputIcon: "",
 		selected: "",
+		disabled: "",
+		enabled: "",
 	},
 	datepickerClassNames: "",
 	defaultDate: new Date(),
@@ -67,7 +71,7 @@ const options: IOptions = {
 		day: "numeric",
 		month: "long",
 		year: "numeric",
-	}
+	},
 }
 
 export default options
